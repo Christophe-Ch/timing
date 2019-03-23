@@ -1,0 +1,14 @@
+{
+    "name": "Timing",
+    "version": "1.0.0",
+    "description": "Displays your navigation times",
+    "permissions": ["history", "storage"],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "browser_action": {
+        "default_popup": "views/startup.html"
+    },
+    "manifest_version": 2
+}

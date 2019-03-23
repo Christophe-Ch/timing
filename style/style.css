@@ -1,0 +1,55 @@
+body {
+    min-width: 300px;
+    min-height: 360px;
+
+    padding: 20px;
+
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+section span {
+    font-weight: bold;
+}
+
+h1 {
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.choice {
+    padding: 20px 10px;
+}
+
+.choice input, .choice button {
+    display: block;
+    margin: 5px auto;
+}
+
+.choice input {
+    padding: 5px;
+}
+
+.choice button {
+    padding: 10px;
+
+    color: white;
+    background: #14ABBD;
+
+    border-radius: 10px;
+    border: none;
+
+    transition: .3s;
+}
+
+.choice button:hover {
+    background: #318BA3;
+}
