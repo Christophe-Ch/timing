@@ -15,7 +15,7 @@ const setDefaultDate = (dateValue) => {
         date = (new Date(dateValue)).getTime();
     }
     
-    chrome.storage.sync.set({startTime: date}, () => {
+    chrome.storage.sync.set({data: []}, () => {
         chrome.browserAction.setPopup({popup: "views/popup.html"});
     });
 
