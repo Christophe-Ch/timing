@@ -4,29 +4,64 @@ const dateField = document.getElementById('date');
 
 dateField.valueAsDate = new Date();
 
-// Events
-const setDefaultDate = (dateValue) => {
-    let date = null;
+const formatDay = (date) => {
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = String(date.getFullYear());
 
-    if(!dateValue) {
+    return `${year}-${month}-${day}`;
+};
+
+const formatHour = (date) => {
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${hours}:${minutes}`;
+};
+
+chrome.history.search({ text: '', startTime: 0, maxResults: 1 }, (elements) => {
+    const date = new Date(elements[0].lastVisitTime);
+    dateField.min = formatDay(date);
+});
+
+const fetchFromDate = (dateValue) => {
+    let date = null;
+    if (!dateValue) {
         date = (new Date()).getTime();
     }
     else {
         date = (new Date(dateValue)).getTime();
     }
-    
-    chrome.storage.sync.set({data: []}, () => {
-        chrome.browserAction.setPopup({popup: "views/popup.html"});
-    });
 
-    window.location.href = "popup.html";
+    chrome.history.search({ text: '', startTime: date, maxResults: 0 }, (elements) => {
+        let data = [];
+        for (let i = elements.length - 1; i >= 0; i--) {
+            element = elements[i];
+            const elementDate = new Date(element.lastVisitTime);
+
+            if (data.length == 0 || data[data.length - 1].day != formatDay(elementDate)) {
+                data.push({
+                    day: formatDay(elementDate),
+                    from: formatHour(elementDate),
+                    to: formatHour(elementDate)
+                });
+            }
+            else {
+                data[data.length - 1].to = formatHour(elementDate);
+            }
+        }
+
+        chrome.storage.sync.set({ data: data });
+        window.location.href = "popup.html";
+        chrome.browserAction.setPopup({ popup: "views/popup.html" });
+    });
 }
 
 pickButton.addEventListener('click', (event) => {
     event.preventDefault();
-    setDefaultDate(dateField.value);
+    fetchFromDate(dateField.value);
 });
 
 startButton.addEventListener('click', () => {
-    setDefaultDate();
+    fetchFromDate();
 });

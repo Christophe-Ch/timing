@@ -1,20 +1,3 @@
-// chrome.storage.sync.get('lastUpdate', (result) => {
-//     let oldest = (new Date()).getTime();
-//     let historyElements = [];
-
-//     while(oldest > result.lastUpdate) {
-//         chrome.history.search({text: '', endTime: oldest}, (results) => {
-//             console.log(results);
-//         });
-//     }
-    
-// });
-
-// chrome.storage.sync.get('test', (items) => {
-//     console.log(items.test);
-//     chrome.storage.sync.set({test: items.test + 1});
-// });
-
 const table = document.getElementById('table-body');
 const clear = document.getElementById('clear-btn');
 
