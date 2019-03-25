@@ -29,7 +29,10 @@ chrome.history.onVisited.addListener((historyItem) => {
         }
 
         chrome.storage.sync.set({data: items.data});
-
-        console.log(items.data[items.data.length - 1]);
     });
+});
+
+
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.browserAction.setPopup({popup: 'views/startup.html'});
 });
