@@ -47,9 +47,10 @@ const fetchFromDate = (dateValue) => {
     }
 
     chrome.history.search({ text: '', startTime: date, maxResults: 0 }, (elements) => {
+        console.log(elements);
         let data = [];
         for (let i = elements.length - 1; i >= 0; i--) { // Elements are sorted in descending order (from date to oldest)
-            const elementDate = new Date(elements[0].lastVisitTime);
+            const elementDate = new Date(elements[i].lastVisitTime);
 
             if (data.length == 0 || data[data.length - 1].day != formatDay(elementDate)) { // Empty list or new day
                 data.push({
