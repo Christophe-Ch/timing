@@ -10,5 +10,8 @@
     "browser_action": {
         "default_popup": "views/popup.html"
     },
+    "icons": {
+        "128": "icons/clock.png"
+    },
     "manifest_version": 2
 }
