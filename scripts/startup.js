@@ -19,8 +19,8 @@ const formatHour = (date) => {
     return `${hours}:${minutes}`;
 };
 
-chrome.history.search({ text: '', startTime: 0, maxResults: 1 }, (elements) => {
-    const date = new Date(elements[0].lastVisitTime);
+chrome.history.search({ text: '', startTime: 0, maxResults: 0 }, (elements) => {
+    const date = new Date(elements[elements.length - 1].lastVisitTime);
     dateField.min = formatDay(date);
 });
 
