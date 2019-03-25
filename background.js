@@ -1,3 +1,6 @@
+/***
+ * @returns {string} Date with the following format: yyyy-mm-dd
+ */
 const formatDay = (date) => {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
@@ -6,6 +9,9 @@ const formatDay = (date) => {
     return `${year}-${month}-${day}`;
 };
 
+/***
+ * @returns {string} Hour with the following format: hh-mm
+ */
 const formatHour = (date) => {
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
@@ -13,6 +19,7 @@ const formatHour = (date) => {
     return `${hours}:${minutes}`;
 };
 
+// Event fired when an element is added to the history
 chrome.history.onVisited.addListener((historyItem) => {
     chrome.storage.sync.get(['data'], (items) => {
         const date = new Date(historyItem.lastVisitTime);

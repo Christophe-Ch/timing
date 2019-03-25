@@ -1,5 +1,5 @@
 body {
-    width: 300px;
+    width: 360px;
     height: 360px;
     padding: 20px;
     text-align: center;
@@ -80,7 +80,7 @@ table thead {
 
 table th, table td {
   padding: 5px;
-  width: 100px;
+  width: 120px;
 }
 
 table td:nth-child(2) {
